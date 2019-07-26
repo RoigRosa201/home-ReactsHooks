@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useFetch } from './hooks';
+
 
 function Joke() {
-    const [joke, setJoke] = useState({});
+    const { setup, punchline } = useFetch ('https://official-joke-api.appspot.com/jokes/random'), {});
     
-    useEffect(() => {
-        fetch('https://official-joke-api.appspot.com/jokes/random')
-       // fetch('http://localhost:3001/Jokes/random')
-            .then(response => response.json())
-            .then(json => {
-                console.log('joke json', json);
-                setJoke(json);
-        });
-    },  []);
-    
-    const { setup, punchline } = joke;
     return (
         <div> 
             <h3>Joke of the session</h3>
